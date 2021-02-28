@@ -1,0 +1,47 @@
+@using Haro.AdminPanel.Models.Enums
+@model List<Module>
+
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+    <div class="sidebar-sticky pt-3">
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          <span>Merhaba, @App.Common.User.Name</span>
+        </h6>
+        <ul class="nav flex-column">
+            @if (App.Common.User.Role == Role.Support)
+            {
+                <li class="nav-item">
+                    <a asp-controller="Module" asp-action="Index" class="nav-link">Modüller</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Table" asp-action="Index" class="nav-link">Tablolar</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="User" asp-action="Index" class="nav-link">Kullanıcılar</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Language" asp-action="Index" class="nav-link">Diller</a>
+                </li>
+            }
+            @if (App.Common.User.Role == Role.SuperAdmin)
+            {
+                <li class="nav-item">
+                    <a asp-controller="User" asp-action="Index" class="nav-link">Kullanıcılar</a>
+                </li>
+            }
+            @foreach (var item in Model)
+            {
+                <li class="nav-item">
+                    <a href="#menu@(item.Id)" data-toggle="collapse" aria-expanded="false" class="nav-link">@item.Name</a>
+                    <ul class="collapse list-unstyled" id="menu@(item.Id)">
+                        @foreach (var table in item.Tables)
+                        {
+                            <li class="nav-item">
+                                <a asp-controller="Dashboard" asp-action="List" asp-route-id="@table.Id" class="nav-link">@table.DisplayName</a>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            }
+        </ul>
+    </div>
+</nav>

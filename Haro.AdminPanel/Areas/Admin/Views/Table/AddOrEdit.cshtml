@@ -1,0 +1,110 @@
+@using Haro.AdminPanel.Utilities.Object
+@model AddTableModel
+
+@{
+    var isNew = Model.Id == 0;
+}
+
+@section topButton{
+    @if (!isNew)
+    {
+        <a asp-controller="Dashboard" asp-action="List" asp-route-id="@Model.Id" class="btn btn-outline-warning mr-2">Verileri Gör</a>
+    }
+    <a asp-action="List" class="btn btn-outline-primary">Listeye Dön</a>
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <ajax-form asp-action="@(isNew ? "Add" : "Edit")">
+            <form-input for="Id" type="Hidden"/>
+            <form-input for="DisplayName" type="Text"/>
+            <form-input for="Name" type="Text" disabled="!isNew"/>
+            <form-input for="ModuleId" type="SelectList" select-items="@Model.ModuleList"/>
+            <hr/>
+            <form-input for="Show" type="Bool"/>
+            <form-input for="MultipleLanguage" type="Bool"/>
+        </ajax-form>
+    </div>
+</div>
+@if (!isNew)
+{
+    <div class="row">
+        <div class="col-lg-12">
+            <button type="button" class="btn btn-success" onclick="editColumn()" style="float: right;margin-bottom: 10px;">Yeni Kolon Ekle</button>
+            <table class="table table-bordered admin-table">
+                <thead>
+                <tr>
+                    <th>Görünen İsim</th>
+                    <th>Veri Tabanı İsmi</th>
+                    <th>Kolon Boyutu</th>
+                    <th>Form Önceliği</th>
+                    <th>Listede Göster</th>
+                    <th>Tip</th>
+                    <th>İşlemler</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model.Columns.OrderBy(x => x.FormOrder))
+                {
+                    <tr>
+                        <td>@item.DisplayName</td>
+                        <td>@item.Name</td>
+                        <td>@item.ColumnSize</td>
+                        <td>@item.FormOrder</td>
+                        <td>@Html.Raw(item.ShowInList ? "<button type=\"button\" class=\"btn btn-success\">Göster</button>" : "<button type=\"button\"  class=\"btn btn-warning\">Gösterme</button>")</td>
+                        <td>@EnumHelper.GetDisplayValue(item.ColumnType)</td>
+                        <td>
+                            <a href="javascript:void(0)" class="btn btn-warning" onclick="editColumn(@item.Id)">
+                                <i class="fa fa-cogs"></i>
+                            </a>
+                            <a asp-controller="Column" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger confirmLink" data-confirm-text="Silmek istediğinize emin misiniz?">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal fade" id="columnModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="columnFormContent">
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section js{
+    <script>
+        $('#DisplayName').keyup(function () { $('#Name').val(camelCase($('#DisplayName').val())); });
+        $('#Name').blur(function () { $(this).val(camelCase($(this).val())); });
+    </script>
+
+    <script>
+        function editColumn(id){
+            var data = {};
+            if(id){
+                data.Id = id;
+            }
+            $.post({
+                url: '@Url.Action("GetForm", "Column")',
+                data: data
+            })
+            .done(function(data){
+                $("#columnFormContent").html(data.Html);
+                $("#columnModal").modal('show');
+                $("#columnForm #TableId").val(@Model.Id);
+            });
+        }
+    </script>
+}

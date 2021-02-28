@@ -1,0 +1,15 @@
+@model AddModuleModel
+
+@{
+    var isNew = Model.Id == 0;
+}
+
+@section topButton{
+    <a asp-action="List" class="btn btn-outline-primary">Listeye Dön</a>
+}
+
+<ajax-form asp-action="@(isNew ? "Add" : "Edit")">
+    <form-input for="Id" type="Hidden"/>
+    <form-input for="Name" type="Text"/>
+    <form-input for="DisplayOrder" type="Number"/>
+</ajax-form>

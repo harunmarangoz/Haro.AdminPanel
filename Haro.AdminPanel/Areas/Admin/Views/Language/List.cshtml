@@ -1,0 +1,39 @@
+@using Haro.AdminPanel.Utilities.Object
+@model IEnumerable<Language>
+
+@section topButton{
+    <a asp-action="Add" class="btn btn-outline-primary">Yeni Ekle</a>
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table table-bordered admin-table">
+            <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(x => x.Image)</th>
+                <th>@Html.DisplayNameFor(x => x.Code)</th>
+                <th>@Html.DisplayNameFor(x => x.DisplayValue)</th>
+                <th>İşlemler</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><img src="@item.Image" style="max-height: 50px;" /></td>
+                    <td>@item.Code</td>
+                    <td>@item.DisplayValue</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">
+                            <i class="fa fa-cogs"></i>
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger confirmLink" data-confirm-text="Silmek istediğinize emin misiniz?">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

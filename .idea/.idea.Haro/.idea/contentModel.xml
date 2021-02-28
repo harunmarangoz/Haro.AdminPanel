@@ -5,7 +5,336 @@
     <e p="$USER_HOME$/Library/Caches/JetBrains/Rider2020.2/extResources" t="IncludeRecursive" />
     <e p="$USER_HOME$/Library/Caches/JetBrains/Rider2020.2/resharper-host/local/Transient/Rider/v202/SolutionCaches/_Haro.449674938.00" t="ExcludeRecursive" />
     <e p="$PROJECT_DIR$" t="IncludeFlat">
+      <e p="Haro.AdminPanel" t="IncludeRecursive">
+        <e p="AddAdminPanelConfiguration.cs" t="Include" />
+        <e p="Areas" t="Include">
+          <e p="Admin" t="Include">
+            <e p="Controllers" t="Include">
+              <e p="AddModelController.cs" t="Include" />
+              <e p="ColumnController.cs" t="Include" />
+              <e p="DashboardController.cs" t="Include" />
+              <e p="ExportController.cs" t="Include" />
+              <e p="HomeController.cs" t="Include" />
+              <e p="LanguageController.cs" t="Include" />
+              <e p="ModuleController.cs" t="Include" />
+              <e p="TableController.cs" t="Include" />
+              <e p="UserController.cs" t="Include" />
+            </e>
+            <e p="TagHelpers" t="Include">
+              <e p="AjaxFormTagHelper.cs" t="Include" />
+              <e p="FormInputTagHelper.cs" t="Include" />
+            </e>
+            <e p="ViewComponents" t="Include">
+              <e p="SideMenuViewComponent.cs" t="Include" />
+            </e>
+            <e p="Views" t="Include">
+              <e p="_ViewImports.cshtml" t="Include" />
+              <e p="_ViewStart.cshtml" t="Include" />
+              <e p="Column" t="Include">
+                <e p="Form.cshtml" t="Include" />
+              </e>
+              <e p="Dashboard" t="Include">
+                <e p="AddOrEdit.cshtml" t="Include" />
+                <e p="GalleryModal.cshtml" t="Include" />
+                <e p="List.cshtml" t="Include" />
+              </e>
+              <e p="Export" t="Include">
+                <e p="Index.cshtml" t="Include" />
+              </e>
+              <e p="Home" t="Include">
+                <e p="Error.cshtml" t="Include" />
+                <e p="Index.cshtml" t="Include" />
+                <e p="Setup.cshtml" t="Include" />
+              </e>
+              <e p="Language" t="Include">
+                <e p="AddOrEdit.cshtml" t="Include" />
+                <e p="List.cshtml" t="Include" />
+              </e>
+              <e p="Module" t="Include">
+                <e p="AddOrEdit.cshtml" t="Include" />
+                <e p="List.cshtml" t="Include" />
+              </e>
+              <e p="Shared" t="Include">
+                <e p="_ClearLayout.cshtml" t="Include" />
+                <e p="_Layout.cshtml" t="Include" />
+                <e p="Components" t="Include">
+                  <e p="SideMenu" t="Include">
+                    <e p="Default.cshtml" t="Include" />
+                  </e>
+                </e>
+              </e>
+              <e p="Table" t="Include">
+                <e p="AddOrEdit.cshtml" t="Include" />
+                <e p="List.cshtml" t="Include" />
+              </e>
+              <e p="User" t="Include">
+                <e p="AddOrEdit.cshtml" t="Include" />
+                <e p="List.cshtml" t="Include" />
+                <e p="Login.cshtml" t="Include" />
+              </e>
+            </e>
+          </e>
+        </e>
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Business" t="Include">
+          <e p="Extensions" t="Include">
+            <e p="DataAccessExtension.cs" t="Include" />
+            <e p="EntryExtensions.cs" t="Include" />
+            <e p="ForeigModelExtensions.cs" t="Include" />
+          </e>
+          <e p="Managers" t="Include">
+            <e p="AddForeignModelManager.cs" t="Include" />
+            <e p="AddModelManager.cs" t="Include" />
+            <e p="ColumnManager.cs" t="Include" />
+            <e p="DashboardManager.cs" t="Include" />
+            <e p="ExportManager.cs" t="Include" />
+            <e p="IAddModelManager.cs" t="Include" />
+            <e p="ImportManager.cs" t="Include" />
+            <e p="LanguageManager.cs" t="Include" />
+            <e p="ModuleManager.cs" t="Include" />
+            <e p="SiteInformationManager.cs" t="Include" />
+            <e p="SqlProvider.cs" t="Include" />
+            <e p="TableManager.cs" t="Include" />
+            <e p="UserManager.cs" t="Include" />
+            <e p="UserModuleManager.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Common" t="Include">
+          <e p="App.cs" t="Include" />
+          <e p="WebCommon.cs" t="Include" />
+        </e>
+        <e p="DataAccess" t="Include">
+          <e p="AdminPanelContext.cs" t="Include" />
+          <e p="AdminPanelContextFactory.cs" t="Include" />
+          <e p="EntityFramework" t="Include">
+            <e p="EfColumnDal.cs" t="Include" />
+            <e p="EfDal.cs" t="Include" />
+            <e p="EfEntityRepositoryBase.cs" t="Include" />
+            <e p="EfLanguageDal.cs" t="Include" />
+            <e p="EfModuleDal.cs" t="Include" />
+            <e p="EfSiteInformationDal.cs" t="Include" />
+            <e p="EfTableDal.cs" t="Include" />
+            <e p="EfUserDal.cs" t="Include" />
+            <e p="EfUserModuleDal.cs" t="Include" />
+            <e p="IEntityRepository.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Haro.AdminPanel.csproj" t="IncludeRecursive" />
+        <e p="Localization" t="Include" />
+        <e p="Migrations" t="Include">
+          <e p="20201109082934_init.cs" t="Include" />
+          <e p="20201109082934_init.Designer.cs" t="Include" />
+          <e p="20201109100236_init2.cs" t="Include" />
+          <e p="20201109100236_init2.Designer.cs" t="Include" />
+          <e p="20201109145158_init3.cs" t="Include" />
+          <e p="20201109145158_init3.Designer.cs" t="Include" />
+          <e p="20201109145238_init4.cs" t="Include" />
+          <e p="20201109145238_init4.Designer.cs" t="Include" />
+          <e p="20201109225715_init5.cs" t="Include" />
+          <e p="20201109225715_init5.Designer.cs" t="Include" />
+          <e p="20201112231038_init6.cs" t="Include" />
+          <e p="20201112231038_init6.Designer.cs" t="Include" />
+          <e p="20201124205121_init7.cs" t="Include" />
+          <e p="20201124205121_init7.Designer.cs" t="Include" />
+          <e p="20201201182232_init8.cs" t="Include" />
+          <e p="20201201182232_init8.Designer.cs" t="Include" />
+          <e p="AdminPanelContextModelSnapshot.cs" t="Include" />
+        </e>
+        <e p="Models" t="Include">
+          <e p="AddModels" t="Include">
+            <e p="AddColumnModel.cs" t="Include" />
+            <e p="AddLanguageModel.cs" t="Include" />
+            <e p="AddModuleModel.cs" t="Include" />
+            <e p="AddSiteInformationModel.cs" t="Include" />
+            <e p="AddTableModel.cs" t="Include" />
+            <e p="AddUserModel.cs" t="Include" />
+            <e p="AddUserModuleModel.cs" t="Include" />
+          </e>
+          <e p="CustomModels" t="Include">
+            <e p="ImportExportDataModel.cs" t="Include" />
+            <e p="LoginModel.cs" t="Include" />
+            <e p="RequestInformationModel.cs" t="Include" />
+            <e p="SetupModel.cs" t="Include" />
+            <e p="TableListModel.cs" t="Include" />
+          </e>
+          <e p="Entities" t="Include">
+            <e p="Column.cs" t="Include" />
+            <e p="Entity.cs" t="Include" />
+            <e p="Language.cs" t="Include" />
+            <e p="Module.cs" t="Include" />
+            <e p="SiteInformation.cs" t="Include" />
+            <e p="Table.cs" t="Include" />
+            <e p="User.cs" t="Include" />
+            <e p="UserModule.cs" t="Include" />
+          </e>
+          <e p="Enums" t="Include">
+            <e p="ColumnType.cs" t="Include" />
+            <e p="Role.cs" t="Include" />
+            <e p="Status.cs" t="Include" />
+          </e>
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="Haro.AdminPanel.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Utilities" t="Include">
+          <e p="Attributes" t="Include">
+            <e p="BreadcrumbAttribute.cs" t="Include" />
+            <e p="ExceptionHandlingAttribute.cs" t="Include" />
+          </e>
+          <e p="Extensions" t="Include">
+            <e p="ContactFormExtensions.cs" t="Include" />
+            <e p="ControllerExtension.cs" t="Include" />
+            <e p="SqlExtensions.cs" t="Include" />
+            <e p="TagHelperExtension.cs" t="Include" />
+            <e p="UrlExtensions.cs" t="Include" />
+          </e>
+          <e p="Mail" t="Include">
+            <e p="MailSender.cs" t="Include" />
+          </e>
+          <e p="Media" t="Include">
+            <e p="DirectoryHelper.cs" t="Include" />
+            <e p="FileHelper.cs" t="Include" />
+            <e p="ImageHelper.cs" t="Include" />
+            <e p="Media.cs" t="Include" />
+            <e p="MediaManager.cs" t="Include" />
+            <e p="VideoHelper.cs" t="Include" />
+          </e>
+          <e p="Middlewares" t="Include">
+            <e p="BackEndRequestMiddleware.cs" t="Include" />
+            <e p="RequestLocalizationCustomMiddleware.cs" t="Include" />
+          </e>
+          <e p="Object" t="Include">
+            <e p="EnumHelper.cs" t="Include" />
+            <e p="PropertyCopier.cs" t="Include" />
+            <e p="PropertyCopy.cs" t="Include" />
+            <e p="SelectListExtension.cs" t="Include" />
+            <e p="Slug.cs" t="Include" />
+            <e p="UniqueIdentifier.cs" t="Include" />
+            <e p="UnorderedListEqualHelper.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="Haro.ExampleWebsite" t="IncludeRecursive">
+        <e p="appsettings.Development.json" t="Include" />
+        <e p="appsettings.json" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Controllers" t="Include">
+          <e p="HomeController.cs" t="Include" />
+        </e>
+        <e p="Haro.ExampleWebsite.csproj" t="IncludeRecursive" />
+        <e p="Models" t="Include">
+          <e p="ErrorViewModel.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="net5.0" t="Include">
+              <e p="Haro.ExampleWebsite.AssemblyInfo.cs" t="Include" />
+              <e p="Haro.ExampleWebsite.RazorAssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="launchSettings.json" t="Include" />
+        </e>
+        <e p="Resources" t="Include">
+          <e p="Resources.Designer.cs" t="Include" />
+          <e p="Resources.en.Designer.cs" t="Include" />
+          <e p="Resources.en.resx" t="Include" />
+          <e p="Resources.resx" t="Include" />
+          <e p="Resources.tr.Designer.cs" t="Include" />
+          <e p="Resources.tr.resx" t="Include" />
+        </e>
+        <e p="Startup.cs" t="Include" />
+        <e p="Views" t="Include">
+          <e p="_ViewImports.cshtml" t="Include" />
+          <e p="_ViewStart.cshtml" t="Include" />
+          <e p="Home" t="Include">
+            <e p="Index.en.cshtml" t="Include" />
+            <e p="Index.tr.cshtml" t="Include" />
+            <e p="Privacy.en.cshtml" t="Include" />
+            <e p="Privacy.tr.cshtml" t="Include" />
+          </e>
+          <e p="Shared" t="Include">
+            <e p="_Layout.cshtml" t="Include" />
+            <e p="_ValidationScriptsPartial.cshtml" t="Include" />
+            <e p="Error.cshtml" t="Include" />
+          </e>
+        </e>
+        <e p="wwwroot" t="Include">
+          <e p="assets" t="Include">
+            <e p="css" t="Include">
+              <e p="dashboard.css" t="Include" />
+            </e>
+          </e>
+          <e p="css" t="Include">
+            <e p="site.css" t="Include" />
+          </e>
+          <e p="favicon.ico" t="Include" />
+          <e p="js" t="Include">
+            <e p="site.js" t="Include" />
+          </e>
+          <e p="lib" t="Include">
+            <e p="bootstrap" t="Include">
+              <e p="dist" t="Include">
+                <e p="css" t="Include">
+                  <e p="bootstrap-grid.css" t="Include" />
+                  <e p="bootstrap-grid.css.map" t="Include" />
+                  <e p="bootstrap-grid.min.css" t="Include" />
+                  <e p="bootstrap-grid.min.css.map" t="Include" />
+                  <e p="bootstrap-reboot.css" t="Include" />
+                  <e p="bootstrap-reboot.css.map" t="Include" />
+                  <e p="bootstrap-reboot.min.css" t="Include" />
+                  <e p="bootstrap-reboot.min.css.map" t="Include" />
+                  <e p="bootstrap.css" t="Include" />
+                  <e p="bootstrap.css.map" t="Include" />
+                  <e p="bootstrap.min.css" t="Include" />
+                  <e p="bootstrap.min.css.map" t="Include" />
+                </e>
+                <e p="js" t="Include">
+                  <e p="bootstrap.bundle.js" t="Include" />
+                  <e p="bootstrap.bundle.js.map" t="Include" />
+                  <e p="bootstrap.bundle.min.js" t="Include" />
+                  <e p="bootstrap.bundle.min.js.map" t="Include" />
+                  <e p="bootstrap.js" t="Include" />
+                  <e p="bootstrap.js.map" t="Include" />
+                  <e p="bootstrap.min.js" t="Include" />
+                  <e p="bootstrap.min.js.map" t="Include" />
+                </e>
+              </e>
+              <e p="LICENSE" t="Include" />
+            </e>
+            <e p="jquery" t="Include">
+              <e p="dist" t="Include">
+                <e p="jquery.js" t="Include" />
+                <e p="jquery.min.js" t="Include" />
+                <e p="jquery.min.map" t="Include" />
+              </e>
+              <e p="LICENSE.txt" t="Include" />
+            </e>
+            <e p="jquery-validation" t="Include">
+              <e p="dist" t="Include">
+                <e p="additional-methods.js" t="Include" />
+                <e p="additional-methods.min.js" t="Include" />
+                <e p="jquery.validate.js" t="Include" />
+                <e p="jquery.validate.min.js" t="Include" />
+              </e>
+              <e p="LICENSE.md" t="Include" />
+            </e>
+            <e p="jquery-validation-unobtrusive" t="Include">
+              <e p="jquery.validate.unobtrusive.js" t="Include" />
+              <e p="jquery.validate.unobtrusive.min.js" t="Include" />
+              <e p="LICENSE.txt" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
       <e p="Haro.sln" t="IncludeFlat" />
+      <e p="packages" t="ExcludeRecursive" />
     </e>
   </component>
 </project>

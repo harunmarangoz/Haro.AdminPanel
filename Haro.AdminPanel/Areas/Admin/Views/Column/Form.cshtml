@@ -1,0 +1,142 @@
+@model AddColumnModel
+
+@{
+    var isNew = Model.Id == 0;
+}
+
+@section topButton{
+    <a asp-action="List" class="btn btn-outline-primary">Listeye Dön</a>
+}
+
+<ajax-form asp-action="@(isNew ? "Add" : "Edit")" id="columnForm">
+    <form-input for="Id" type="Hidden"/>
+    <form-input for="TableId" type="Hidden"/>
+    <form-input for="DisplayName" type="Text"/>
+    <form-input for="Name" type="Text" disabled="!isNew"/>
+
+    <form-input for="ColumnType" type="SelectList" select-items="@Model.ColumnTypeList" disabled="!isNew"/>
+
+    <form-input for="ColumnSize" type="Number"/>
+    <form-input for="FormOrder" type="Number"/>
+    <form-input for="ShowInList" type="Bool"/>
+    <form-input for="ListOrder" type="Number"/>
+
+    <form-input for="TargetTableId" type="SelectList" select-items="@Model.TargetTableList" disabled="!isNew"/>
+    <form-input for="TargetColumnId" type="SelectList" disabled="true" disabled="!isNew"/>
+    
+    <form-input for="InputExtra" type="Text"/>
+</ajax-form>
+
+
+@if (isNew)
+{
+    <script>
+        $('#columnForm #DisplayName').keyup(function () { $('#columnForm #Name').val(camelCase($('#columnForm #DisplayName').val())); });
+    </script>
+}
+<script>
+    setInputs('@((int) Model.ColumnType)');
+    $('#columnForm #TargetTableId').on('change',function(){
+        var id = $(this).val();
+        if(!id){
+            $('#columnForm #TargetColumnId').attr("disabled","disabled");
+        }
+        $.get('@Url.Action("GetColumnsByTableId", "Column")?id=' + id)
+        .done(function(data){
+            var html = '';
+            $.each(data,function(index, data){
+                html += '<option value="'+data.Value+'">'+data.Text+'</option>';
+            })
+            $('#columnForm #TargetColumnId').html(html);
+            $('#columnForm #TargetColumnId').removeAttr("disabled");
+        })
+    });
+    $('#columnForm #ColumnType').on('change',function(){
+        setInputs($(this).val());
+    });
+    function setInputs(id){
+        var targetColumn = $('#columnForm #TargetColumnId');
+        var targetTable = $('#columnForm #TargetTableId');
+        var showInList = $('#columnForm #ShowInList');
+        var listOrder = $('#columnForm #ListOrder');
+        var inputExtra = $('#columnForm #InputExtra');
+        switch (id) {
+            case '1':
+                targetColumn.parent().hide();
+                targetTable.parent().hide();
+                showInList.parent().show();
+                inputExtra.parent().hide();
+                break;
+            case '2':
+                targetColumn.parent().hide();
+                targetTable.parent().hide();
+                showInList.parent().hide();
+                listOrder.parent().hide();
+                inputExtra.parent().hide();
+               break;
+            case '3':
+                targetColumn.parent().hide();
+                targetTable.parent().hide();
+                showInList.parent().hide();
+                listOrder.parent().hide();
+                inputExtra.parent().hide();
+                break;
+            case '4':
+                targetColumn.parent().show();
+                targetTable.parent().show();
+                showInList.parent().show();
+                listOrder.parent().show();
+                inputExtra.parent().hide();
+                break;
+            case '5':
+                targetColumn.parent().show();
+                targetTable.parent().show();
+                listOrder.parent().hide();
+                showInList.parent().hide();
+                inputExtra.parent().hide();
+                break;
+            case '6':
+                targetColumn.parent().hide();
+                targetTable.parent().hide();
+                showInList.parent().show();
+                listOrder.parent().show();
+                inputExtra.parent().hide();
+                break;
+            case '7':
+                targetColumn.parent().hide();
+                targetTable.parent().hide();
+                listOrder.parent().hide();
+                showInList.parent().hide();
+                inputExtra.parent().hide();
+                break;
+            case '8':
+                targetColumn.parent().hide();
+                targetTable.parent().hide();
+                showInList.parent().show();
+                listOrder.parent().show();
+                inputExtra.parent().hide();
+                break;
+            case '9':
+                targetColumn.parent().hide();
+                targetTable.parent().hide();
+                showInList.parent().show();
+                listOrder.parent().show();
+                inputExtra.parent().hide();
+                break;
+            case '12':
+                targetColumn.parent().hide();
+                targetTable.parent().hide();
+                showInList.parent().show();
+                listOrder.parent().show();
+                inputExtra.parent().show();
+                break;
+            default: 
+                targetColumn.parent().hide();
+                targetTable.parent().hide();
+                showInList.parent().show();
+                listOrder.parent().show();
+                inputExtra.parent().hide();
+                break;
+        }
+    }
+</script>

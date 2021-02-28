@@ -1,8 +1,22 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haro.AdminPanel", "Haro.AdminPanel\Haro.AdminPanel.csproj", "{EA1205F9-D4A8-4427-BE50-CD00928A43ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haro.ExampleWebsite", "Haro.ExampleWebsite\Haro.ExampleWebsite.csproj", "{196FCC73-E81F-466C-A45D-B1AF4C9ADB98}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EA1205F9-D4A8-4427-BE50-CD00928A43ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA1205F9-D4A8-4427-BE50-CD00928A43ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA1205F9-D4A8-4427-BE50-CD00928A43ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA1205F9-D4A8-4427-BE50-CD00928A43ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{196FCC73-E81F-466C-A45D-B1AF4C9ADB98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{196FCC73-E81F-466C-A45D-B1AF4C9ADB98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{196FCC73-E81F-466C-A45D-B1AF4C9ADB98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{196FCC73-E81F-466C-A45D-B1AF4C9ADB98}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

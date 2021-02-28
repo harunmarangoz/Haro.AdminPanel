@@ -1,0 +1,42 @@
+@using Haro.AdminPanel.Models.Enums
+@model AddUserModel
+
+@{
+    var isNew = Model.Id == 0;
+}
+
+@section topButton{
+    <a asp-action="List" class="btn btn-outline-primary">Listeye Dön</a>
+}
+
+<ajax-form asp-action="@(isNew ? "Add" : "Edit")">
+    <form-input for="Id" type="Hidden" />
+    <form-input for="Name" type="Text" />
+    <form-input for="Email" type="Text" />
+    <form-input for="Password" type="Password"  />
+    <form-input for="PasswordControl" type="Password"  />
+    <hr />    
+    <form-input for="Role" type="SelectList" select-items="@Model.RoleList" />
+    <form-input for="SelectedModules" type="SelectList" select-items="@Model.ModuleList" multiple="true" />
+</ajax-form>
+
+
+
+@section js{
+    <script>
+        $(document).ready(function(){
+            controlRole($("#Role").val());
+        });
+        $("#Role").on('change', function(){
+            controlRole($("#Role").val());
+        })
+        function controlRole(val){
+            var $select = $("#SelectedModules").parent();
+            if(val === '3'){
+                $select.show();
+            }else{
+                $select.hide();
+            }
+        }
+    </script>
+}

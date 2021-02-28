@@ -1,0 +1,150 @@
+@using Haro.AdminPanel.Models.Enums
+@model AddRecordModel
+
+@{
+    var isNew = Model.Entry == null;
+}
+
+@section topButton{
+    <a asp-action="List" asp-route-id="@Model.Table.Id" class="btn btn-outline-primary">Listeye Dön</a>
+}
+
+<ul class="nav nav-pills mb-3">
+    @foreach (var item in App.Common.Languages)
+    {
+        <li class="nav-item">
+            <a asp-action="Add" asp-route-id="@Model.Table.Id" asp-route-languageId="@item.Id" asp-route-languagePairId="@Model.LanguagePairId" class="nav-link @Html.Raw(item.Code == Model.Language.Code ? "active" : "")">@item.DisplayValue</a>
+        </li>
+    }
+</ul>
+<h2>@Html.Raw(isNew ? "Yeni Ekle" : "Güncelle")</h2>
+<ajax-form asp-action="@(isNew ? "Add" : "Edit")">
+    @if (!isNew)
+    {
+        <input type="hidden" name="Id" id="Id" value="@Model.Entry["Id"]"/>
+    }
+    <input type="hidden" name="TableId" id="TableId" value="@Model.Table.Id"/>
+    <input type="hidden" name="LanguageId" id="LanguageId" value="@Model.Language.Id"/>
+    @if (Model.LanguagePairId.HasValue)
+    {
+        <input type="hidden" name="LanguagePairId" id="LanguagePairId" value="@Model.LanguagePairId"/>
+    }
+    @foreach (var item in Model.Columns)
+    {
+        switch (item.ColumnType)
+        {
+            case ColumnType.Text:
+                <div class="form-group">
+                    <label for="@item.Name">@item.DisplayName</label>
+                    <input name="@item.Name" id="@item.Name" value="@item.Value" type="text" class="form-control"/>
+                </div>
+                break;
+            case ColumnType.Image:
+                <div class="form-group">
+                    <label for="@item.Name">@item.DisplayName</label>
+                    <input name="@item.Name" id="@item.Name" value="@item.Value" type="file" class="form-control"/>
+                </div>
+                break;
+            case ColumnType.Bool:
+                <div class="form-group">
+                    <label for="@item.Name">@item.DisplayName</label>
+                    <input name="@item.Name" id="@item.Name" value="@item.Value" type="checkbox" class="form-control" @Html.Raw(item.Value == "True" ? "checked=\"checked\"" : "")/>
+                </div>
+                break;
+            case ColumnType.Number:
+                <div class="form-group">
+                    <label for="@item.Name">@item.DisplayName</label>
+                    <input name="@item.Name" id="@item.Name" value="@item.Value" type="number" class="form-control"/>
+                </div>
+                break;
+            case ColumnType.Password:
+                <div class="form-group">
+                    <label for="@item.Name">@item.DisplayName</label>
+                    <input name="@item.Name" id="@item.Name" value="@item.Value" type="password" class="form-control"/>
+                </div>
+                break;
+            case ColumnType.TextArea:
+                <div class="form-group">
+                    <label for="@item.Name">@item.DisplayName</label>
+                    <textarea name="@item.Name" id="@item.Name" class="form-control">@item.Value</textarea>
+                </div>
+                break;
+            case ColumnType.Editor:
+                <div class="form-group">
+                    <label for="@item.Name">@item.DisplayName</label>
+                    <textarea name="@item.Name" id="@item.Name" class="form-control">@item.Value</textarea>
+                </div>
+                break;
+            case ColumnType.SelectList:
+                <div class="form-group">
+                    <label for="@item.Name">@item.DisplayName</label>
+                    <select name="@item.Name" id="@item.Name" class="form-control" asp-items="@item.SelectListItems"></select>
+                </div>
+                break;
+            case ColumnType.MultipleSelectList:
+                <div class="form-group">
+                    <label for="@item.Name">@item.DisplayName</label>
+                    <select name="@item.Name" id="@item.Name" class="form-control" asp-items="@item.SelectListItems" multiple="multiple"></select>
+                </div>
+                break;
+            case ColumnType.MultipleImage:
+                if (!isNew)
+                {
+                    <div class="form-group">
+                        <label for="@item.Name">@item.DisplayName</label>
+                        <button type="button" class="btn btn-primary" onclick="openGalleryModal(@item.Id,@Model.Entry["Id"])">Galeriyi Aç</button>
+                    </div>
+                }
+                break;
+            case ColumnType.Slug:
+                <div class="form-group">
+                    <label for="@item.Name">@item.DisplayName</label>
+                    <input name="@item.Name" id="@item.Name" value="@item.Value" type="text" class="form-control"/>
+                </div>
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    }
+</ajax-form>
+<div id="modalContent"></div>
+
+
+@section js{
+    <script src="//cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
+    @foreach (var item in Model.Columns.Where(x => x.ColumnType == ColumnType.Slug))
+    {
+        <script>
+            $('#@(item.InputExtra)').keyup(function () { $('#@(item.Name)').val(generateSeoUrl($('#@(item.InputExtra)').val())); });
+            $('#@(item.Name)').blur(function () { $(this).val(generateSeoUrl($(this).val())); });
+        </script>
+    }
+    <script>
+        @foreach (var item in Model.Columns.Where(x => x.ColumnType == ColumnType.Editor))
+        {
+            <text>CKEDITOR.replace('@item.Name');</text>
+        }
+        function openGalleryModal(columnId, entryId){
+            $.post({
+                url: '@Url.Action("GetGalleryModal")',
+                data: {ColumnId:columnId,  EntryId: entryId}
+            })
+            .done(function(data){
+                $("#modalContent").html(data.Html);
+                $("#galleryModal").modal('show');
+            })
+            .fail(ajaxFormFail);
+            
+        }
+        function deleteGalleryImage(columnId, entryId){
+            $.post({
+                url: '@Url.Action("DeleteGalleryImage")',
+                data: {ColumnId:columnId,  EntryId: entryId}
+            })
+            .done(function(data){
+                $("#galleryImage" + entryId).remove();
+            })
+            .fail(ajaxFormFail);
+        }
+    </script>
+}

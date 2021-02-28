@@ -1,0 +1,21 @@
+@model Haro.AdminPanel.Models.CustomModels.SetupModel
+
+@{
+    Layout = "_ClearLayout";
+}
+
+<ajax-form asp-action="Setup" class="form-signin">
+    <form-input for="ProjectName" type="Text"/>
+    <hr/>
+    <form-input for="SmtpServer" type="Text"/>
+    <form-input for="SmtPort" type="Number"/>
+    <form-input for="SmtpUserName" type="Text"/>
+    <form-input for="SmtpPassword" type="Text"/>
+    <form-input for="SmtpEnableSsl" type="Bool"/>
+    <hr/>
+    <form-input for="UserName" type="Text"/>
+    <form-input for="UserEmail" type="Text"/>
+    <form-input for="UserPassword" type="Password"/>
+    <hr/>
+    <form-input for="SelectedLanguages" type="SelectList" select-items="@Model.LanguageList" multiple="true"/>
+</ajax-form>

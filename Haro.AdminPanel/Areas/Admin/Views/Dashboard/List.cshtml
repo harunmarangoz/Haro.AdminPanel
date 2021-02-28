@@ -1,0 +1,65 @@
+@using System.Data
+@using Haro.AdminPanel.Models.Enums
+@model Haro.AdminPanel.Models.CustomModels.TableListModel
+
+
+@section topButton{
+    @if (App.Common.User.Role == Role.Support)
+    {
+        <a asp-controller="Table" asp-action="Edit" asp-route-id="@Model.Table.Id" class="btn btn-outline-warning mr-2">Tabloyu Düzenle</a>
+    }
+    @foreach (var modelColumn in Model.Columns.Where(x => x.ColumnType == ColumnType.SelectList || x.ColumnType == ColumnType.MultipleSelectList))
+    {
+        <a asp-action="List" asp-route-id="@modelColumn.TargetTableId" class="btn btn-outline-success mr-2">@modelColumn.TargetTable</a>
+    }
+    <a asp-action="Add" asp-route-id="@Model.Table.Id" asp-route-languageId="@App.Common.Language.Id" class="btn btn-outline-primary">Yeni Ekle</a>
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table table-bordered admin-table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                @foreach (var column in Model.Columns.Where(x => x.ShowInList))
+                {
+                    <th>@column.DisplayName</th>
+                }
+                <th>İşlemler</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (DataRow entry in Model.Entries.Rows)
+            {
+                <tr>
+                    <td>#@entry["Id"]</td>
+                    @foreach (var column in Model.Columns.Where(x => x.ShowInList))
+                    {
+                        switch (column.ColumnType)
+                        {
+                            case ColumnType.Image:
+                                <td>
+                                    <img src="@entry[column.Name]" style="max-height: 60px" />
+                                </td>
+                                break;
+                            default:
+                                <td>
+                                    @entry[column.Name]
+                                </td>
+                                break;
+                        }
+                    }
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@Model.Table.Id" asp-route-entryId="@entry["Id"]" class="btn btn-warning">
+                            <i class="fa fa-cogs"></i>
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@Model.Table.Id" asp-route-entryId="@entry["Id"]" class="btn btn-danger confirmLink" data-confirm-text="Silmek istediğinize emin misiniz?">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

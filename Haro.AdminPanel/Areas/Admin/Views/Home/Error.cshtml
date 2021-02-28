@@ -1,0 +1,12 @@
+@model ExceptionPageModel
+
+@{
+    Layout = "_ClearLayout";
+}
+
+<ajax-form class="form-signin" submit-button="false">
+    <h1 class="h3 mb-3 font-weight-normal">@Model.Description</h1>
+    <p class="mt-5 mb-3 text-muted">@Model.Source</p>
+    <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="btn btn-lg btn-primary btn-block">Ana Sayfa</a>
+    <p class="mt-5 mb-3 text-muted">&copy; Duall Ajans</p>
+</ajax-form>
